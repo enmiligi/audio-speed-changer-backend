@@ -1,5 +1,5 @@
 [package]
-name = "audio-speed-changer"
+name = "audio-speed-changer-backend"
 version = "0.1.0"
 authors = ["Enea Giger <enea.giger@tuta.io>"]
 edition = "2018"
