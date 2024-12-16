@@ -69,9 +69,7 @@ impl Processor {
     }
 
     pub fn move_to_last(&mut self) {
-        for i in 0..FFT_SIZE {
-            self.last[i] = self.current[i];
-        }
+        std::mem::swap(&mut self.current, &mut self.last);
     }
 
     pub fn prepare_fft(&mut self) {
@@ -117,7 +115,7 @@ impl Processor {
     }
 
     #[wasm_bindgen]
-    pub fn process(&mut self, input_list: &mut [f32], output_list: &mut [f32]) -> f32 {
+    pub fn process(&mut self, input_list: &mut [f32], output_list: &mut [f32]) -> bool {
         let mut i = 0;
         while i < input_list.len() {
             self.buffer1[self.buffer_at] = input_list[i];
@@ -141,6 +139,6 @@ impl Processor {
             i += 1;
         }
 
-        return 0.0;
+        return true;
     }
 }
